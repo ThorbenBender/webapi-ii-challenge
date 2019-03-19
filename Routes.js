@@ -13,7 +13,9 @@ routes.post('/api/posts', (req, res) => {
 		db
 			.insert(req.body)
 			.then((data) => {
-				res.status(201).json(data);
+				db.findById(data.id).then((newUser) => {
+					res.json(newUser);
+				});
 			})
 			.catch(() => {
 				res.status(500).json({ error: 'There was an error while saving the post to the database' });
