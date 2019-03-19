@@ -21,6 +21,21 @@ routes.post('/api/posts', (req, res) => {
 	}
 });
 
+routes.get('/api/posts/:id', (req, res) => {
+	db
+		.findById(req.params.id)
+		.then((data) => {
+			if (data.length === 0) {
+				res.status(404).json({ message: 'The post with the specified ID does not exist.' });
+			} else {
+				res.status(200).json(data);
+			}
+		})
+		.catch(() => {
+			res.status(500).json({ error: 'The post information could not be retrieved.' });
+		});
+});
+
 routes.get('/api/posts', (req, res) => {
 	db
 		.find()
