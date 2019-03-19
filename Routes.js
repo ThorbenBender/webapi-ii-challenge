@@ -83,10 +83,4 @@ routes.get('/api/posts', (req, res) => {
 		});
 });
 
-// routes.get()
-
-// routes.delete();
-
-// routes.put();
-
 module.exports = routes;
